@@ -84,7 +84,6 @@ function parseResume(text: string) {
 
 // Scoring algorithm (Software Engineer default)
 function calculateScore(parsed: ReturnType<typeof parseResume>): ScoreResult {
-  let score = 0;
   const feedback: string[] = [];
   const breakdown: ScoreBreakdown = {
     experience: 0,
@@ -125,7 +124,7 @@ function calculateScore(parsed: ReturnType<typeof parseResume>): ScoreResult {
     /^(Led|Built|Increased|Reduced|Launched|Grew|Designed|Implemented|Optimized|Delivered)/i.test(b.trim())
   ).length;
 
-  let achievementScore = bulletsWithNumbers * 2 + strongVerbBullets * 1.5;
+  const achievementScore = bulletsWithNumbers * 2 + strongVerbBullets * 1.5;
   breakdown.achievements = Math.min(achievementScore, 25);
 
   if (bulletsWithNumbers === 0) {

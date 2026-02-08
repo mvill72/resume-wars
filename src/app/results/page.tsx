@@ -34,18 +34,30 @@ interface ResumeScore {
 
 export default function ResultsPage() {
   const [scoreData, setScoreData] = useState<ResumeScore | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const stored = sessionStorage.getItem("resumeScore");
-    if (stored) {
-      setScoreData(JSON.parse(stored));
-    } else {
-      router.push("/upload");
-    }
+    const loadScoreData = () => {
+      const stored = sessionStorage.getItem("resumeScore");
+      if (stored) {
+        try {
+          const data = JSON.parse(stored);
+          setScoreData(data);
+        } catch (error) {
+          console.error("Failed to parse score data:", error);
+          router.push("/upload");
+        }
+      } else {
+        router.push("/upload");
+      }
+      setIsLoading(false);
+    };
+
+    loadScoreData();
   }, [router]);
 
-  if (!scoreData) {
+  if (isLoading || !scoreData) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-indigo-950 flex items-center justify-center">
         <div className="text-center">
