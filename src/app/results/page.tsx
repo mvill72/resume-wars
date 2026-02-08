@@ -110,7 +110,6 @@ export default function ResultsPage() {
   }
 
   const { score, fileName, parsedData } = scoreData;
-  const { count: animatedScore, isComplete } = useCountUp(score.total, 2000);
 
   const maxScores = {
     experience: 30,
