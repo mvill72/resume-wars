@@ -79,16 +79,16 @@ export default function Home() {
           </div>
 
           {/* Stats */}
-          <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-            <div>
+          <div className={`mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto transition-all duration-700 delay-[800ms] ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="hover:scale-110 transition-transform duration-300">
               <div className="text-3xl font-bold text-cyan-400">100+</div>
               <div className="text-sm text-slate-400">Resumes Scored</div>
             </div>
-            <div>
+            <div className="hover:scale-110 transition-transform duration-300">
               <div className="text-3xl font-bold text-cyan-400">5</div>
               <div className="text-sm text-slate-400">Categories</div>
             </div>
-            <div>
+            <div className="hover:scale-110 transition-transform duration-300">
               <div className="text-3xl font-bold text-cyan-400">Elite</div>
               <div className="text-sm text-slate-400">Tier System</div>
             </div>

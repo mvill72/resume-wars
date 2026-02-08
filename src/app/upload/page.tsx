@@ -9,7 +9,12 @@ export default function UploadPage() {
   const [isDragging, setIsDragging] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
