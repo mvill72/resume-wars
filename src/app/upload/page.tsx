@@ -86,13 +86,13 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-indigo-950">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <div className="max-w-3xl mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors"
           >
             <svg
               className="w-5 h-5"
@@ -110,10 +110,10 @@ export default function UploadPage() {
             Back to Home
           </Link>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-blue-100 mb-4">
             Upload Your Resume
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-400 mb-12">
+          <p className="text-lg text-slate-300 mb-12">
             Get an instant AI-powered score and personalized feedback
           </p>
 
@@ -124,15 +124,15 @@ export default function UploadPage() {
             onDrop={handleDrop}
             className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-200 ${
               isDragging
-                ? "border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20"
-                : "border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800"
+                ? "border-blue-400 bg-blue-500/10 backdrop-blur-sm"
+                : "border-blue-400/30 bg-slate-800/50 backdrop-blur-sm"
             }`}
           >
             {!file ? (
               <>
                 <div className="mb-4">
                   <svg
-                    className="w-16 h-16 mx-auto text-gray-400"
+                    className="w-16 h-16 mx-auto text-blue-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -145,14 +145,14 @@ export default function UploadPage() {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-xl font-semibold text-blue-100 mb-2">
                   Drop your resume here
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
+                <p className="text-slate-300 mb-6">
                   or click to browse
                 </p>
                 <label className="cursor-pointer">
-                  <span className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 inline-block">
+                  <span className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-200 inline-block">
                     Choose File
                   </span>
                   <input
@@ -162,13 +162,13 @@ export default function UploadPage() {
                     onChange={handleFileInput}
                   />
                 </label>
-                <p className="text-sm text-gray-500 dark:text-gray-500 mt-4">
+                <p className="text-sm text-slate-400 mt-4">
                   Supported formats: PDF, DOCX (Max 5MB)
                 </p>
               </>
             ) : (
               <div className="space-y-4">
-                <div className="flex items-center justify-center gap-3 text-green-600 dark:text-green-400">
+                <div className="flex items-center justify-center gap-3 text-green-400">
                   <svg
                     className="w-8 h-8"
                     fill="currentColor"
@@ -180,25 +180,25 @@ export default function UploadPage() {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <span className="text-lg font-semibold text-blue-100">
                     {file.name}
                   </span>
                 </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm text-slate-400">
                   {(file.size / 1024).toFixed(1)} KB
                 </p>
                 <div className="flex gap-4 justify-center">
                   <button
                     onClick={handleUpload}
                     disabled={isUploading}
-                    className="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-gray-400 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                    className="px-8 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 text-white font-semibold rounded-lg shadow-md shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-200"
                   >
                     {isUploading ? "Processing..." : "Analyze Resume"}
                   </button>
                   <button
                     onClick={() => setFile(null)}
                     disabled={isUploading}
-                    className="px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-semibold rounded-lg transition-all duration-200"
+                    className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold rounded-lg transition-all duration-200"
                   >
                     Remove
                   </button>
@@ -208,8 +208,8 @@ export default function UploadPage() {
           </div>
 
           {error && (
-            <div className="mt-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-              <p className="text-red-600 dark:text-red-400 text-center">
+            <div className="mt-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg backdrop-blur-sm">
+              <p className="text-red-300 text-center">
                 {error}
               </p>
             </div>
@@ -217,49 +217,49 @@ export default function UploadPage() {
 
           {/* Info Section */}
           <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+            <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-blue-400/20">
+              <h3 className="font-semibold text-blue-100 mb-2">
                 What we analyze
               </h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+              <ul className="space-y-2 text-slate-300 text-sm">
                 <li className="flex items-start gap-2">
-                  <span className="text-indigo-500 mt-0.5">✓</span>
+                  <span className="text-blue-400 mt-0.5">✓</span>
                   Skills & keyword relevance
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-indigo-500 mt-0.5">✓</span>
+                  <span className="text-blue-400 mt-0.5">✓</span>
                   Experience & career progression
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-indigo-500 mt-0.5">✓</span>
+                  <span className="text-blue-400 mt-0.5">✓</span>
                   Achievements & measurable impact
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-indigo-500 mt-0.5">✓</span>
+                  <span className="text-blue-400 mt-0.5">✓</span>
                   Education & certifications
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-indigo-500 mt-0.5">✓</span>
+                  <span className="text-blue-400 mt-0.5">✓</span>
                   Clarity & ATS compatibility
                 </li>
               </ul>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+            <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-blue-400/20">
+              <h3 className="font-semibold text-blue-100 mb-2">
                 Your privacy matters
               </h3>
-              <ul className="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+              <ul className="space-y-2 text-slate-300 text-sm">
                 <li className="flex items-start gap-2">
-                  <span className="text-indigo-500 mt-0.5">🔒</span>
+                  <span className="text-blue-400 mt-0.5">🔒</span>
                   Files are processed securely
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-indigo-500 mt-0.5">🔒</span>
+                  <span className="text-blue-400 mt-0.5">🔒</span>
                   No data shared with third parties
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-indigo-500 mt-0.5">🔒</span>
+                  <span className="text-blue-400 mt-0.5">🔒</span>
                   Temporary storage only
                 </li>
               </ul>
