@@ -287,23 +287,23 @@ export default function ResultsPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className={`flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 delay-[1800ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <Link
               href="/upload"
-              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-200 text-center"
+              className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-200 text-center hover:scale-105"
             >
               Analyze Another Resume
             </Link>
             <Link
               href="/"
-              className="px-8 py-4 bg-slate-800/50 hover:bg-slate-700/50 text-blue-100 font-semibold rounded-lg shadow-md transition-all duration-200 border border-blue-400/30 text-center backdrop-blur-sm"
+              className="px-8 py-4 bg-slate-800/50 hover:bg-slate-700/50 text-blue-100 font-semibold rounded-lg shadow-md transition-all duration-200 border border-blue-400/30 text-center backdrop-blur-sm hover:scale-105"
             >
               Back to Home
             </Link>
           </div>
 
           {/* Coming Soon Banner */}
-          <div className="mt-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 text-center text-white shadow-lg">
+          <div className={`mt-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-2xl p-8 text-center text-white shadow-lg transition-all duration-700 delay-[2000ms] ${showContent ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             <h3 className="text-2xl font-bold mb-2">Coming Soon: Tournaments!</h3>
             <p className="text-blue-100 mb-4">
               Compete against other resumes in bracket-style matchups. Create an account to join the waitlist.
