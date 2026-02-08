@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import pdf from "pdf-parse";
+// @ts-ignore - pdf-parse has module resolution issues with Next.js 16
+import * as pdfParse from "pdf-parse";
 import mammoth from "mammoth";
 
 // Scoring algorithm types
