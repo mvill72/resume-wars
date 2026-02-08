@@ -13,7 +13,9 @@ export default function UploadPage() {
   const router = useRouter();
 
   useEffect(() => {
-    setIsVisible(true);
+    // Use setTimeout to avoid synchronous setState in effect
+    const timer = setTimeout(() => setIsVisible(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleDragOver = (e: React.DragEvent) => {
