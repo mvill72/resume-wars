@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-// @ts-ignore - pdf-parse has module resolution issues with Next.js 16
-import * as pdfParse from "pdf-parse";
+const pdfParse = require("pdf-parse");
 import mammoth from "mammoth";
 
 // Scoring algorithm types
@@ -22,9 +21,7 @@ interface ScoreResult {
 
 // Helper function to extract text from PDF
 async function extractPdfText(buffer: Buffer): Promise<string> {
-  // @ts-ignore
-  const pdfParser = pdfParse.default || pdfParse;
-  const data = await pdfParser(buffer);
+  const data = await pdfParse(buffer);
   return data.text;
 }
 
