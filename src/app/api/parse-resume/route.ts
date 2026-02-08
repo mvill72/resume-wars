@@ -22,7 +22,9 @@ interface ScoreResult {
 
 // Helper function to extract text from PDF
 async function extractPdfText(buffer: Buffer): Promise<string> {
-  const data = await pdf(buffer);
+  // @ts-ignore
+  const pdfParser = pdfParse.default || pdfParse;
+  const data = await pdfParser(buffer);
   return data.text;
 }
 
