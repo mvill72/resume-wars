@@ -150,8 +150,8 @@ export default function ResultsPage() {
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-400/30 text-green-300 text-sm font-medium mb-6">
+          <div className={`text-center mb-12 transition-all duration-700 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-400/30 text-green-300 text-sm font-medium mb-6 animate-pulse">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path
                   fillRule="evenodd"
@@ -168,15 +168,15 @@ export default function ResultsPage() {
           </div>
 
           {/* Main Score Card */}
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-400/20 p-8 md:p-12 mb-8">
+          <div className={`bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-400/20 p-8 md:p-12 mb-8 transition-all duration-700 delay-200 ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <div className="text-center mb-8">
               <div className="text-8xl font-bold mb-4">
-                <span className={`bg-gradient-to-r ${getTierColor(score.tier)} bg-clip-text text-transparent`}>
-                  {score.total}
+                <span className={`bg-gradient-to-r ${getTierColor(score.tier)} bg-clip-text text-transparent transition-all duration-500 ${isComplete ? 'scale-110' : 'scale-100'}`}>
+                  {animatedScore}
                 </span>
                 <span className="text-4xl text-slate-500">/100</span>
               </div>
-              <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 backdrop-blur-sm">
+              <div className={`inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/30 backdrop-blur-sm transition-all duration-500 delay-500 ${isComplete ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}`}>
                 <span className="text-3xl">{getTierEmoji(score.tier)}</span>
                 <span className="text-2xl font-bold text-blue-100">
                   {score.tier} Tier
