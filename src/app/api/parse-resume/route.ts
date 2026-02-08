@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-const pdfParse = require("pdf-parse");
 import mammoth from "mammoth";
+
+// Dynamic import for pdf-parse
+let pdfParse: any;
+async function getPdfParse() {
+  if (!pdfParse) {
+    pdfParse = (await import("pdf-parse")).default || await import("pdf-parse");
+  }
+  return pdfParse;
+}
 
 // Scoring algorithm types
 interface ScoreBreakdown {
@@ -21,7 +29,8 @@ interface ScoreResult {
 
 // Helper function to extract text from PDF
 async function extractPdfText(buffer: Buffer): Promise<string> {
-  const data = await pdfParse(buffer);
+  const parser = await getPdfParse();
+  const data = await parser(buffer);
   return data.text;
 }
 
