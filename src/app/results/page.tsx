@@ -71,6 +71,10 @@ export default function ResultsPage() {
   const [showContent, setShowContent] = useState(false);
   const router = useRouter();
 
+  // Call useCountUp hook at top level, it will work even with scoreData null initially
+  const totalScore = scoreData?.score?.total ?? 0;
+  const { count: animatedScore, isComplete } = useCountUp(totalScore, 2000);
+
   useEffect(() => {
     const loadScoreData = () => {
       const stored = sessionStorage.getItem("resumeScore");
@@ -79,7 +83,8 @@ export default function ResultsPage() {
           const data = JSON.parse(stored);
           setScoreData(data);
           // Trigger animations after data loads
-          setTimeout(() => setShowContent(true), 100);
+          const timer = setTimeout(() => setShowContent(true), 100);
+          return () => clearTimeout(timer);
         } catch (error) {
           console.error("Failed to parse score data:", error);
           router.push("/upload");
