@@ -97,7 +97,7 @@ export default function UploadPage() {
         <div className="max-w-3xl mx-auto">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-colors"
+            className={`inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 mb-8 transition-all duration-500 hover:translate-x-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}
           >
             <svg
               className="w-5 h-5"
@@ -115,10 +115,10 @@ export default function UploadPage() {
             Back to Home
           </Link>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-blue-100 mb-4">
+          <h1 className={`text-4xl md:text-5xl font-bold text-blue-100 mb-4 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Upload Your Resume
           </h1>
-          <p className="text-lg text-slate-300 mb-12">
+          <p className={`text-lg text-slate-300 mb-12 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             Get an instant AI-powered score and personalized feedback
           </p>
 
@@ -127,11 +127,11 @@ export default function UploadPage() {
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
-            className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-200 ${
+            className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all duration-500 delay-300 ${
               isDragging
-                ? "border-blue-400 bg-blue-500/10 backdrop-blur-sm"
+                ? "border-blue-400 bg-blue-500/10 backdrop-blur-sm scale-105"
                 : "border-blue-400/30 bg-slate-800/50 backdrop-blur-sm"
-            }`}
+            } ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             {!file ? (
               <>
