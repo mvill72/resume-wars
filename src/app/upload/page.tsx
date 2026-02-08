@@ -222,7 +222,7 @@ export default function UploadPage() {
 
           {/* Info Section */}
           <div className="mt-12 grid md:grid-cols-2 gap-6">
-            <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-blue-400/20">
+            <div className={`bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-blue-400/20 transition-all duration-700 delay-500 hover:scale-105 transform ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
               <h3 className="font-semibold text-blue-100 mb-2">
                 What we analyze
               </h3>
@@ -250,7 +250,7 @@ export default function UploadPage() {
               </ul>
             </div>
 
-            <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-blue-400/20">
+            <div className={`bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-blue-400/20 transition-all duration-700 delay-600 hover:scale-105 transform ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
               <h3 className="font-semibold text-blue-100 mb-2">
                 Your privacy matters
               </h3>
