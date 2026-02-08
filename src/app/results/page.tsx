@@ -190,14 +190,22 @@ export default function ResultsPage() {
                 Score Breakdown
               </h3>
 
-              {Object.entries(score.breakdown).map(([category, value]) => {
+              {Object.entries(score.breakdown).map(([category, value], index) => {
                 const max = maxScores[category as keyof typeof maxScores];
                 const percentage = (value / max) * 100;
                 const isGood = percentage >= 80;
                 const isOkay = percentage >= 60;
 
                 return (
-                  <div key={category}>
+                  <div
+                    key={category}
+                    className={`transition-all duration-500`}
+                    style={{
+                      transitionDelay: `${600 + index * 100}ms`,
+                      opacity: showContent ? 1 : 0,
+                      transform: showContent ? 'translateX(0)' : 'translateX(-20px)'
+                    }}
+                  >
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm font-medium text-slate-300 capitalize">
                         {category}
@@ -206,16 +214,19 @@ export default function ResultsPage() {
                         {value}/{max}
                       </span>
                     </div>
-                    <div className="w-full bg-slate-700/50 rounded-full h-3">
+                    <div className="w-full bg-slate-700/50 rounded-full h-3 overflow-hidden">
                       <div
-                        className={`h-3 rounded-full transition-all duration-500 ${
+                        className={`h-3 rounded-full transition-all duration-1000 ease-out ${
                           isGood
                             ? "bg-green-500"
                             : isOkay
                             ? "bg-yellow-500"
                             : "bg-orange-500"
                         }`}
-                        style={{ width: `${percentage}%` }}
+                        style={{
+                          width: showContent ? `${percentage}%` : '0%',
+                          transitionDelay: `${800 + index * 100}ms`
+                        }}
                       ></div>
                     </div>
                   </div>
@@ -226,7 +237,7 @@ export default function ResultsPage() {
 
           {/* Feedback Section */}
           {score.feedback.length > 0 && (
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-400/20 p-8 mb-8">
+            <div className={`bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-400/20 p-8 mb-8 transition-all duration-700 delay-[1200ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               <h3 className="text-2xl font-semibold text-blue-100 mb-4 flex items-center gap-2">
                 <span>💡</span>
                 Ways to Improve
@@ -235,7 +246,12 @@ export default function ResultsPage() {
                 {score.feedback.map((tip, index) => (
                   <li
                     key={index}
-                    className="flex items-start gap-3 text-slate-300"
+                    className="flex items-start gap-3 text-slate-300 transition-all duration-500"
+                    style={{
+                      transitionDelay: `${1400 + index * 100}ms`,
+                      opacity: showContent ? 1 : 0,
+                      transform: showContent ? 'translateX(0)' : 'translateX(-10px)'
+                    }}
                   >
                     <span className="text-blue-400 mt-1 flex-shrink-0">▸</span>
                     <span>{tip}</span>
@@ -246,7 +262,7 @@ export default function ResultsPage() {
           )}
 
           {/* Stats Card */}
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-400/20 p-8 mb-8">
+          <div className={`bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-400/20 p-8 mb-8 transition-all duration-700 delay-[1500ms] ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <h3 className="text-2xl font-semibold text-blue-100 mb-6">
               Resume Insights
             </h3>
