@@ -1,8 +1,41 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+// Hook for counting animation
+function useCountUp(end: number, duration: number = 2000) {
+  const [count, setCount] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    let animationFrame: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const percentage = Math.min(progress / duration, 1);
+
+      // Easing function for smooth deceleration
+      const easeOutQuart = 1 - Math.pow(1 - percentage, 4);
+      setCount(Math.floor(end * easeOutQuart));
+
+      if (percentage < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setCount(end);
+        setIsComplete(true);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [end, duration]);
+
+  return { count, isComplete };
+}
 
 interface ScoreBreakdown {
   experience: number;
@@ -35,6 +68,7 @@ interface ResumeScore {
 export default function ResultsPage() {
   const [scoreData, setScoreData] = useState<ResumeScore | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [showContent, setShowContent] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -44,6 +78,8 @@ export default function ResultsPage() {
         try {
           const data = JSON.parse(stored);
           setScoreData(data);
+          // Trigger animations after data loads
+          setTimeout(() => setShowContent(true), 100);
         } catch (error) {
           console.error("Failed to parse score data:", error);
           router.push("/upload");
@@ -69,6 +105,8 @@ export default function ResultsPage() {
   }
 
   const { score, fileName, parsedData } = scoreData;
+  const { count: animatedScore, isComplete } = useCountUp(score.total, 2000);
+
   const maxScores = {
     experience: 30,
     skills: 25,
