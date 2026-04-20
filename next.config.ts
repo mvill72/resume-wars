@@ -10,9 +10,8 @@ const nextConfig: NextConfig = {
     };
     return config;
   },
-  experimental: {
-    serverComponentsExternalPackages: ['pdf-parse'],
-  },
+  serverExternalPackages: ['pdf-parse'],
+  turbopack: {},
 };
 
 export default nextConfig;
