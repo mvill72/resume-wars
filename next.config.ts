@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['pdf-parse', 'canvas'],
+  turbopack: {},
   webpack: (config, { isServer }) => {
     // Handle pdf-parse and canvas dependencies
     if (isServer) {
