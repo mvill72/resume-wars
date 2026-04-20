@@ -64,7 +64,7 @@ export default function Home() {
           </div>
 
           {/* Features Grid */}
-          <div id="features" className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-20">
+          <div id="features" className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-40">
             <div className={`bg-slate-800/50 backdrop-blur-sm p-6 rounded-xl shadow-lg border border-blue-400/20 transition-all duration-700 delay-500 hover:scale-105 transform hover:border-blue-400/40 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="text-4xl mb-4">📊</div>
               <h3 className="text-xl font-bold mb-2 text-blue-100">Instant Scoring</h3>
