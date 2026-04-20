@@ -1,17 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  webpack: (config) => {
+  serverExternalPackages: ['pdf-parse', 'canvas'],
+  webpack: (config, { isServer }) => {
     // Handle pdf-parse and canvas dependencies
-    config.resolve.alias.canvas = false;
+    if (isServer) {
+      config.resolve.alias.canvas = false;
+    }
     config.resolve.fallback = {
       ...config.resolve.fallback,
       fs: false,
+      canvas: false,
     };
     return config;
   },
-  serverExternalPackages: ['pdf-parse'],
-  turbopack: {},
 };
 
 export default nextConfig;
