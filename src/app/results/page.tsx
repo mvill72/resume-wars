@@ -82,9 +82,9 @@ export default function ResultsPage() {
         try {
           const data = JSON.parse(stored);
           setScoreData(data);
+          setIsLoading(false);
           // Trigger animations after data loads
-          const timer = setTimeout(() => setShowContent(true), 100);
-          return () => clearTimeout(timer);
+          setTimeout(() => setShowContent(true), 100);
         } catch (error) {
           console.error("Failed to parse score data:", error);
           router.push("/upload");
@@ -92,7 +92,6 @@ export default function ResultsPage() {
       } else {
         router.push("/upload");
       }
-      setIsLoading(false);
     };
 
     loadScoreData();
